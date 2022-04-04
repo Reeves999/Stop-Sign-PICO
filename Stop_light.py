@@ -2,14 +2,14 @@ from machine import Pin
 import utime
 
 def stop_and_go():
-    botton = Pin(14,Pin.IN,Pin.PULL_DOWN)
+    button = Pin(14,Pin.IN,Pin.PULL_DOWN)
     green_led = Pin(13,Pin.OUT)
     yellow_led = Pin(12,Pin.OUT)
     red_led = Pin(11,Pin.OUT)
     pico_led = Pin(25,Pin.OUT)
     while True:
         pico_led.value(0) #This function checks if the pico_led is off.
-        if button.value() == 1:
+        if button.value() == 0:#if button is off
             #The green_led turns on and off after 15secs
             green_led.value(1)
             utime.sleep(15)
@@ -22,7 +22,7 @@ def stop_and_go():
             red_led.value(1)
             utime.sleep(10)
             red_led.value(0)
-        elif button.value() == 0:
+        elif button.value() == 1: #If button is on
             print("The button has been Pressed! Call for help!!!!!!!!!!")
             pico_led.toggle()
         else:
